@@ -1,3 +1,13 @@
 # Visual Studio cache directory
 */.vs/
 .vs/
+
+# Non-Unity Metadata
+/*.config.js.meta
+/LICENSE.meta
+/*.md.meta
+/*.toml.meta
+
+# Unity Scenes
+[Ss]cenes/
+[Ss]cenes.meta
