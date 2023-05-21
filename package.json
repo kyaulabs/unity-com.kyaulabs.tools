@@ -1,0 +1,16 @@
+{
+	"name": "com.kyaulabs.tools",
+	"version": "0.0.1",
+	"displayName": "KYAU Labs Tools",
+	"description": "A collection of UnityEditor scripts.",
+	"unity": "2022.2",
+	"unityRelease": "20f1",
+	"documentationUrl": "https://github.com/kyaulabs/unity-com.kyaulabs.tools",
+	"changelogUrl": "https://github.com/kyaulabs/unity-com.kyaulabs.tools/blob/develop/CHANGELOG.md",
+	"licensesUrl": "https://github.com/kyaulabs/unity-com.kyaulabs.tools/blob/develop/LICENSE",
+	"author": {
+		"name": "KYAU Labs",
+		"email": "git@kyaulabs.com",
+		"url": "https://kyaulabs.com"
+	}
+}
