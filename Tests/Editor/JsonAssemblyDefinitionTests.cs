@@ -30,102 +30,182 @@ namespace KYAULabs.Tools.Tests
 {
     public class JsonAssemblyDefinitionTests
     {
-        private JsonAssemblyDefinition _jsonAssemblyDefinition { get; set; } = null;
+        private JsonAssemblyDefinition NewAssemblyDefinition { get; set; } = null;
 
         [SetUp]
         public void Setup()
         {
-            _jsonAssemblyDefinition = new();
+            NewAssemblyDefinition = new("Testing");
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestType()
+        public void JsonAssemblyDefinitionTest_Type()
         {
-            Assert.That(_jsonAssemblyDefinition, Is.TypeOf<JsonAssemblyDefinition>());
+            Assert.That(NewAssemblyDefinition, Is.TypeOf<JsonAssemblyDefinition>());
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestName()
+        public void JsonAssemblyDefinitionTest_name_ShouldBeString()
         {
-            Assert.That(_jsonAssemblyDefinition.name, Is.TypeOf<string>());
-            Assert.That(_jsonAssemblyDefinition.name, Is.Empty);
+            Assert.That(NewAssemblyDefinition.name, Is.TypeOf<string>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_name_ShouldBeEqualToTesting()
+        {
+            Assert.That(NewAssemblyDefinition.name, Is.EqualTo("Testing"));
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestRootNamespace()
+        public void JsonAssemblyDefinitionTest_rootNamespace_ShouldBeString()
         {
-            Assert.That(_jsonAssemblyDefinition.rootNamespace, Is.TypeOf<string>());
-            Assert.That(_jsonAssemblyDefinition.rootNamespace, Is.Empty);
+            Assert.That(NewAssemblyDefinition.rootNamespace, Is.TypeOf<string>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_rootNamespace_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.rootNamespace, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestReferences()
+        public void JsonAssemblyDefinitionTest_references_ShouldBeStringArray()
         {
-            Assert.That(_jsonAssemblyDefinition.references, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.references, Is.Empty);
+            Assert.That(NewAssemblyDefinition.references, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_references_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.references, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestIncludePlatforms()
+        public void JsonAssemblyDefinitionTest_includePlatforms_ShouldBeStringArray()
         {
-            Assert.That(_jsonAssemblyDefinition.includePlatforms, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.includePlatforms, Is.Empty);
+            Assert.That(NewAssemblyDefinition.includePlatforms, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_includePlatforms_ShouldBeempty()
+        {
+            Assert.That(NewAssemblyDefinition.includePlatforms, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestExcludePlatforms()
+        public void JsonAssemblyDefinitionTest_excludePlatforms_ShouldBeStringArray()
         {
-            Assert.That(_jsonAssemblyDefinition.excludePlatforms, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.excludePlatforms, Is.Empty);
+            Assert.That(NewAssemblyDefinition.excludePlatforms, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_excludePlatforms_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.excludePlatforms, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestAllowUnsafeCode()
+        public void JsonAssemblyDefinitionTest_precompiledReferences_ShouldBeStringArray()
         {
-            Assert.That(_jsonAssemblyDefinition.allowUnsafeCode, Is.TypeOf<bool>());
-            Assert.That(_jsonAssemblyDefinition.allowUnsafeCode, Is.EqualTo(false));
+            Assert.That(NewAssemblyDefinition.precompiledReferences, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_precompiledReferences_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.precompiledReferences, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestOverrideReferences()
+        public void JsonAssemblyDefinitionTest_defineConstraints_ShouldBeString()
         {
-            Assert.That(_jsonAssemblyDefinition.overrideReferences, Is.TypeOf<bool>());
-            Assert.That(_jsonAssemblyDefinition.overrideReferences, Is.EqualTo(false));
+            Assert.That(NewAssemblyDefinition.defineConstraints, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_defineConstraints_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.defineConstraints, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestPrecompiledReferences()
+        public void JsonAssemblyDefinitionTest_versionDefines_ShouldBeString()
         {
-            Assert.That(_jsonAssemblyDefinition.precompiledReferences, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.precompiledReferences, Is.Empty);
+            Assert.That(NewAssemblyDefinition.versionDefines, Is.TypeOf<string[]>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_versionDefines_ShouldBeEmpty()
+        {
+            Assert.That(NewAssemblyDefinition.versionDefines, Is.Empty);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestAutoReferenced()
+        public void JsonAssemblyDefinitionTest_allowUnsafeCode_ShouldBeBool()
         {
-            Assert.That(_jsonAssemblyDefinition.autoReferenced, Is.TypeOf<bool>());
-            Assert.That(_jsonAssemblyDefinition.autoReferenced, Is.EqualTo(false));
+            Assert.That(NewAssemblyDefinition.allowUnsafeCode, Is.TypeOf<bool>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_allowUnsafeCode_ShouldNotBeNull()
+        {
+            Assert.That(NewAssemblyDefinition.allowUnsafeCode, Is.Not.Null);
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_allowUnsafeCode_ShouldBeFalse()
+        {
+            Assert.That(NewAssemblyDefinition.allowUnsafeCode, Is.False);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestDefineConstraints()
+        public void JsonAssemblyDefinitionTest_overrideReferences_ShouldBeBool()
         {
-            Assert.That(_jsonAssemblyDefinition.defineConstraints, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.defineConstraints, Is.Empty);
+            Assert.That(NewAssemblyDefinition.overrideReferences, Is.TypeOf<bool>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_overrideReferences_ShouldNotBeNull()
+        {
+            Assert.That(NewAssemblyDefinition.overrideReferences, Is.Not.Null);
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_overrideReferences_ShouldBeFalse()
+        {
+            Assert.That(NewAssemblyDefinition.overrideReferences, Is.False);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestVersionDefines()
+        public void JsonAssemblyDefinitionTest_autoReferenced_ShouldBeBool()
         {
-            Assert.That(_jsonAssemblyDefinition.versionDefines, Is.TypeOf<string[]>());
-            Assert.That(_jsonAssemblyDefinition.versionDefines, Is.Empty);
+            Assert.That(NewAssemblyDefinition.autoReferenced, Is.TypeOf<bool>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_autoReferenced_ShouldNotBeNull()
+        {
+            Assert.That(NewAssemblyDefinition.autoReferenced, Is.Not.Null);
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_autoReferenced_ShouldBeFalse()
+        {
+            Assert.That(NewAssemblyDefinition.autoReferenced, Is.False);
         }
 
         [Test]
-        public void JsonAssemblyDefinitionTestNoEngineReferences()
+        public void JsonAssemblyDefinitionTest_noEngineReferences_ShouldBeBool()
         {
-            Assert.That(_jsonAssemblyDefinition.noEngineReferences, Is.TypeOf<bool>());
-            Assert.That(_jsonAssemblyDefinition.noEngineReferences, Is.EqualTo(false));
+            Assert.That(NewAssemblyDefinition.noEngineReferences, Is.TypeOf<bool>());
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_noEngineReferences_ShouldNotBeNull()
+        {
+            Assert.That(NewAssemblyDefinition.noEngineReferences, Is.Not.Null);
+        }
+        [Test]
+        public void JsonAssemblyDefinitionTest_noEngineReferences_ShouldBeFalse()
+        {
+            Assert.That(NewAssemblyDefinition.noEngineReferences, Is.False);
+        }
+
+        [Test]
+        public void JsonAssemblyDefinitionTest_name_InstantiateWithNull_ThrowException()
+        {
+            Assert.That(() => new JsonAssemblyDefinition(null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void JsonAssemblyDefinitionTest_rootNamespace_InstantiateWithNull_ThrowException()
+        {
+            Assert.That(() => new JsonAssemblyDefinition("Test",null), Throws.ArgumentNullException);
         }
     }
 }

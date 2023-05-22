@@ -35,7 +35,7 @@ namespace KYAULabs.Tools.Tests
         private const string Path1 = "Assets/TestDir1";
         private const string Path2 = "Assets/TestDir2";
         [Test]
-        public void ToolsMenuTestCreateDirectories()
+        public void MenuTools_CreateDirectoriesTest_AssetsExist_ShouldBeTrue()
         {
             MenuTools.CreateDirectories(null, "TestDir1", "TestDir2");
             AssetDatabase.Refresh();
@@ -46,7 +46,7 @@ namespace KYAULabs.Tools.Tests
         }
 
         [Test]
-        public void ToolsMenuTestCreateDirectoriesNested()
+        public void MenuTools_CreateDirectoriesNestedTest_AssetsExist_ShouldBeTrue()
         {
             MenuTools.CreateDirectories("TestDir1", "TestDir3");
             AssetDatabase.Refresh();

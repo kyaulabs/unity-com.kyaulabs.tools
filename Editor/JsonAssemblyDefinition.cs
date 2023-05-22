@@ -1,6 +1,3 @@
-
-
-using System;
 /**
 * ▄▄▄▄ ▄▄▄▄ ▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 * █ ▄▄ ▄ ▄▄ ▄ ▄▄▄▄ ▄▄ ▄    ▄▄   ▄▄▄▄ ▄▄▄▄  ▄▄▄ ▀
@@ -27,6 +24,9 @@ using System;
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using UnityEngine;
+
 namespace KYAULabs.Tools
 {
     [Serializable]
@@ -44,5 +44,19 @@ namespace KYAULabs.Tools
         public string[] defineConstraints = Array.Empty<string>();
         public string[] versionDefines = Array.Empty<string>();
         public bool noEngineReferences;
+
+        public JsonAssemblyDefinition(string _name)
+        {
+            name = _name ?? throw new ArgumentNullException(nameof(_name));
+        }
+        public JsonAssemblyDefinition(string _name, string _rootNamespace)
+        {
+            name = _name ?? throw new ArgumentNullException(nameof(_name));
+            rootNamespace = _rootNamespace ?? throw new ArgumentNullException(nameof(_rootNamespace));
+        }
+        public string ToJson()
+        {
+            return JsonUtility.ToJson(this);
+        }
     }
 }

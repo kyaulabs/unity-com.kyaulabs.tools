@@ -41,7 +41,7 @@ namespace KYAULabs.Tools.Tests
         }
 
         [Test]
-        public void ToolsMenuDefaultsTestDefaultFolders()
+        public void MenuTools_CreateDefaultFoldersTest_AssetsExist_ShouldBeTrue()
         {
             // Arrange
             expectedFolders = new[] {
@@ -64,7 +64,7 @@ namespace KYAULabs.Tools.Tests
         }
 
         [Test]
-        public void ToolsMenuDefaultsTestAdditionalFolders()
+        public void MenuTools_CreateAdditionalFoldersTest_AssetsExist_ShouldBeTrue()
         {
             // Arrange
             expectedFolders = new[]

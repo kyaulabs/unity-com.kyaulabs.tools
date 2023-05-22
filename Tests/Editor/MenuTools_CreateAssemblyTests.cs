@@ -33,35 +33,52 @@ namespace KYAULabs.Tools.Tests
 {
     public class MenuTools_CreateAssemblyTests
     {
-        private JsonAssemblyDefinition _json;
+        private JsonAssemblyDefinition NewAssemblyDefinition { get; set; } = null;
 
         [Test]
-        public void ToolsMenuCreateAssemblyTestFormat()
+        public void MenuTools_CreateAssemblyTest_ObjectFormat()
         {
-            _json = MenuTools.CreateAssemblyDefinitionJson("Tests");
-            Assert.That(_json.name, Is.EqualTo("Tests"));
-            Assert.That(_json.rootNamespace, Is.EqualTo("KYAULabs"));
-            Assert.That(_json.autoReferenced, Is.True);
+            // Arrange
+            string name = "Tests";
+
+            // Act
+            NewAssemblyDefinition = MenuTools.CreateAssemblyDefinitionJson(name);
+
+            // Assert
+            Assert.That(NewAssemblyDefinition.name, Is.EqualTo(name));
+            Assert.That(NewAssemblyDefinition.rootNamespace, Is.EqualTo("KYAULabs"));
+            Assert.That(NewAssemblyDefinition.autoReferenced, Is.True);
         }
 
         [Test]
-        public void ToolsMenuCreateAssemblyTestFormatTests()
+        public void MenuTools_CreateAssemblyTest_TestObjectFormat()
         {
-            _json = MenuTools.CreateAssemblyDefinitionJson("Testing", "Editor");
-            Assert.That(_json.name, Is.EqualTo("Testing"));
-            Assert.That(_json.rootNamespace, Is.EqualTo("KYAULabs.Tests"));
-            Assert.That(_json.overrideReferences, Is.True);
-            Assert.That(_json.references, Contains.Item("UnityEditor.TestRunner"));
-            Assert.That(_json.references, Contains.Item("UnityEngine.TestRunner"));
-            Assert.That(_json.precompiledReferences, Contains.Item("nunit.framework.dll"));
-            Assert.That(_json.defineConstraints, Contains.Item("UNITY_INCLUDE_TESTS"));
+            // Arrange
+            string name = "Testing";
+
+            // Act
+            NewAssemblyDefinition = MenuTools.CreateAssemblyDefinitionJson(name, "Editor");
+
+            // Assert
+            Assert.That(NewAssemblyDefinition.name, Is.EqualTo(name));
+            Assert.That(NewAssemblyDefinition.rootNamespace, Is.EqualTo("KYAULabs.Tests"));
+            Assert.That(NewAssemblyDefinition.overrideReferences, Is.True);
+            Assert.That(NewAssemblyDefinition.references, Contains.Item("UnityEditor.TestRunner"));
+            Assert.That(NewAssemblyDefinition.references, Contains.Item("UnityEngine.TestRunner"));
+            Assert.That(NewAssemblyDefinition.precompiledReferences, Contains.Item("nunit.framework.dll"));
+            Assert.That(NewAssemblyDefinition.defineConstraints, Contains.Item("UNITY_INCLUDE_TESTS"));
         }
 
         [Test]
-        public void ToolsMenuCreateAssemblyTestAssemblyTest()
+        public void MenuTools_CreateAssemblyTest_AssetExists_ShouldBeTrue()
         {
-            MenuTools.CreateAssemblyDefinition("Tests", "TestAssembly1");
+            // Arrange
             string assetPath = $"Assets/Tests/TestAssembly1.asmdef";
+
+            // Act
+            MenuTools.CreateAssemblyDefinition("Tests", "TestAssembly1");
+
+            // Assert
             FileAssert.Exists(assetPath);
             Assert.That(AssetDatabase.LoadAssetAtPath<Object>(assetPath) ? true : false, Is.True);
             Assert.That(AssetDatabase.DeleteAsset(assetPath), Is.True);

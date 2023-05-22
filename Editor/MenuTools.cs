@@ -37,68 +37,49 @@ namespace KYAULabs.Tools
         {
             var fullPath = Path.Combine(Application.dataPath, rootPath ?? string.Empty);
             if (!Directory.Exists(fullPath))
-            {
-                //Debug.Log($"Creating: {fullPath}");
                 Directory.CreateDirectory(fullPath);
-            }
             
             foreach (var newDirectory in dirs)
-            {
-                var newDir = Path.Combine(fullPath, newDirectory);
-                //Debug.Log($"Also Creating: {newDir}");
                 Directory.CreateDirectory(Path.Combine(fullPath, newDirectory));
-            }
-        }
-
-        public static string GetAssetsDirectory()
-        {
-            return Application.dataPath;
         }
 
         public static JsonAssemblyDefinition CreateAssemblyDefinitionJson(string name, string tests = null)
         {
-            JsonAssemblyDefinition json = new()
-            {
-                name = name,
-                rootNamespace = "KYAULabs"
-            };
+            JsonAssemblyDefinition jsonAssemblyDefinition = new(name, "KYAULabs");
 
             if (tests != null)
             {
-                json.rootNamespace = "KYAULabs.Tests";
-                json.overrideReferences = true;
-                json.references = new[] { "UnityEngine.TestRunner", "UnityEditor.TestRunner" };
-                json.precompiledReferences = new[] { "nunit.framework.dll" };
-                json.defineConstraints = new[] { "UNITY_INCLUDE_TESTS" };
+                jsonAssemblyDefinition.rootNamespace = "KYAULabs.Tests";
+                jsonAssemblyDefinition.overrideReferences = true;
+                jsonAssemblyDefinition.references = new[] { "UnityEngine.TestRunner", "UnityEditor.TestRunner" };
+                jsonAssemblyDefinition.precompiledReferences = new[] { "nunit.framework.dll" };
+                jsonAssemblyDefinition.defineConstraints = new[] { "UNITY_INCLUDE_TESTS" };
                 if (tests == "EditMode" || tests == "Editor")
                 {
-                    json.includePlatforms = new[] { "Editor" };
+                    jsonAssemblyDefinition.includePlatforms = new[] { "Editor" };
                 }
             }
             else
             {
-                json.autoReferenced = true;
+                jsonAssemblyDefinition.autoReferenced = true;
             }
-            return json;
+            return jsonAssemblyDefinition;
         }
 
         public static void CreateAssemblyDefinition(string path, string name, string tests = null)
         {
-            JsonAssemblyDefinition json = CreateAssemblyDefinitionJson(name, tests);
-
-            string text = JsonUtility.ToJson(json);
+            JsonAssemblyDefinition jsonAssemblyDefinition = CreateAssemblyDefinitionJson(name, tests);
             string fullPath = Path.Combine(Application.dataPath, $"{path}/{name}.asmdef");
             string assetPath = $"Assets/{path}/{name}.asmdef";
-            //Debug.Log($"Assembly Full Path: {fullPath}");
 
-            File.WriteAllText(fullPath, text);
+            File.WriteAllText(fullPath, jsonAssemblyDefinition.ToJson());
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
         }
 
         [MenuItem("Tools/Project Setup/Default Folders")]
         public static void CreateDefaultFolders()
         {
-            projectPath = projectPath ?? string.Empty;
+            projectPath ??= string.Empty;
             /*
              * Prefabs
              * Scenes
@@ -125,7 +106,7 @@ namespace KYAULabs.Tools
         [MenuItem("Tools/Project Setup/Additional Folders")]
         public static void CreateAdditionalFolders()
         {
-            projectPath = projectPath ?? string.Empty;
+            projectPath ??= string.Empty;
             /*
              * Art
              * - Animations
