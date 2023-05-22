@@ -1,8 +1,12 @@
 {
-    "name": "Tools.Editor",
+    "name": "Tools",
     "rootNamespace": "KYAULabs",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        ""
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

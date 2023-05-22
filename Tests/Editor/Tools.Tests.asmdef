@@ -1,10 +1,10 @@
 {
-    "name": "Editor",
-    "rootNamespace": "",
+    "name": "Tools.Tests",
+    "rootNamespace": "KYAULabs",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Tools.Editor"
+        "Tools"
     ],
     "includePlatforms": [
         "Editor"
