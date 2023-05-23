@@ -7,7 +7,7 @@
  * ▄ ▀▀ ▀ ▀▀▀▀ ▀▀ ▀ ▀▀▀▀    ▀▀▀▀ ▀▀ ▀ ▀▀▀▀ ▀▀▀  █
  * ▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀
  *
- * MenuTools_CreateDirectoriesTests.cs
+ * MenuTools_PackageManagementTests.cs
  * Copyright (C) 2023 KYAU Labs (https://kyaulabs.com)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,40 +24,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
 using NUnit.Framework;
-using UnityEditor;
 
 namespace KYAULabs.Tools.Tests
 {
-    public class MenuTools_CreateDirectoriesTests
+    public class MenuTools_PackageManagementTests
     {
-        private const string Path1 = "Assets/TestDir1";
-        private const string Path2 = "Assets/TestDir2";
         [Test]
-        public void MenuTools_CreateDirectoriesTest_AssetsExist_ShouldBeTrue()
+        public void MenuToolsTest_IsPackageInstalled_PackageExists()
         {
-            MenuToolsDirectories.CreateDirectories(null, "TestDir1", "TestDir2");
-            AssetDatabase.Refresh();
-            DirectoryAssert.Exists(new DirectoryInfo(Path1));
-            DirectoryAssert.Exists(new DirectoryInfo(Path2));
-            Assert.That(AssetDatabase.DeleteAsset(Path1), Is.True);
-            Assert.That(AssetDatabase.DeleteAsset(Path2), Is.True);
+            // Arrange
+            string packageName = "com.unity.ide.visualstudio";
+
+            // Act
+            bool isInstalled = MenuToolsPackages.IsPackageInstalled(packageName);
+
+            // Assert
+            Assert.That(isInstalled, Is.True);
         }
 
         [Test]
-        public void MenuTools_CreateDirectoriesNestedTest_AssetsExist_ShouldBeTrue()
+        public void MenuToolsTest_IsPackageInstalled_PackageDoesNotExist()
         {
-            MenuToolsDirectories.CreateDirectories("TestDir1", "TestDir3");
-            AssetDatabase.Refresh();
-            DirectoryAssert.Exists(new DirectoryInfo(Path1 + "/TestDir3"));
-            Assert.That(AssetDatabase.DeleteAsset(Path1), Is.True);
-        }
+            // Arrange
+            string packageName = "com.nonexistent.package";
 
-        [TearDown]
-        public void Teardown()
-        {
-            AssetDatabase.Refresh();
+            // Act
+            bool isInstalled = MenuToolsPackages.IsPackageInstalled(packageName);
+
+            // Assert
+            Assert.That(isInstalled, Is.False);
         }
     }
 }

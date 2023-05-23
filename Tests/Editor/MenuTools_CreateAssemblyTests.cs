@@ -42,7 +42,7 @@ namespace KYAULabs.Tools.Tests
             string name = "Tests";
 
             // Act
-            NewAssemblyDefinition = MenuTools.CreateAssemblyDefinitionJson(name);
+            NewAssemblyDefinition = MenuToolsDirectories.CreateAssemblyDefinitionJson(name);
 
             // Assert
             Assert.That(NewAssemblyDefinition.name, Is.EqualTo(name));
@@ -57,7 +57,7 @@ namespace KYAULabs.Tools.Tests
             string name = "Testing";
 
             // Act
-            NewAssemblyDefinition = MenuTools.CreateAssemblyDefinitionJson(name, "Editor");
+            NewAssemblyDefinition = MenuToolsDirectories.CreateAssemblyDefinitionJson(name, "Editor");
 
             // Assert
             Assert.That(NewAssemblyDefinition.name, Is.EqualTo(name));
@@ -76,7 +76,7 @@ namespace KYAULabs.Tools.Tests
             string assetPath = $"Assets/Tests/TestAssembly1.asmdef";
 
             // Act
-            MenuTools.CreateAssemblyDefinition("Tests", "TestAssembly1");
+            MenuToolsDirectories.CreateAssemblyDefinition("Tests", "TestAssembly1");
 
             // Assert
             FileAssert.Exists(assetPath);

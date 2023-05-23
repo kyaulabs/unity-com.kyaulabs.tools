@@ -7,7 +7,7 @@
  * ▄ ▀▀ ▀ ▀▀▀▀ ▀▀ ▀ ▀▀▀▀    ▀▀▀▀ ▀▀ ▀ ▀▀▀▀ ▀▀▀  █
  * ▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀
  *
- * MenuTools.cs
+ * MenuToolsDirectories.cs
  * Copyright (C) 2023 KYAU Labs (https://kyaulabs.com)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,16 +24,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.PackageManager;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace KYAULabs.Tools
 {
     /// <summary>
-    /// Provides utility methods for Tools menu.
+    /// Provides utility methods for manipulating the default project directory structure.
     /// </summary>
-    public static class MenuTools
+    public static class MenuToolsDirectories
     {
         /// <summary>
         /// Gets or sets the project path.
@@ -51,8 +56,8 @@ namespace KYAULabs.Tools
             if (!Directory.Exists(fullPath))
                 Directory.CreateDirectory(fullPath);
             
-            foreach (var newDirectory in dirs)
-                Directory.CreateDirectory(Path.Combine(fullPath, newDirectory));
+            foreach (var newDir in dirs)
+                Directory.CreateDirectory(Path.Combine(fullPath, newDir));
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace KYAULabs.Tools
         }
 
         /// <summary>
-        /// Creates the default folder structure for the project.
+        /// Creates the initial directory structure for the project.
         /// </summary>
         /// <remarks>
         /// - Prefabs
@@ -116,8 +121,8 @@ namespace KYAULabs.Tools
         ///   - PlayMode
         ///     - PlayModeTests.asmdef
         /// </remarks>
-        [MenuItem("Tools/Project Setup/Default Folders")]
-        public static void CreateDefaultFolders()
+        [MenuItem("Tools/Project Setup/Create Initial Directories")]
+        public static void CreateDefaultDirs()
         {
             projectPath ??= string.Empty;
             CreateDirectories(projectPath, "Prefabs", "Scripts", "Tests", "ThirdParty");
@@ -131,7 +136,7 @@ namespace KYAULabs.Tools
         }
 
         /// <summary>
-        /// Creates additional folders (client-side) for the project.
+        /// Creates additional directories (client-side) for the project.
         /// </summary>
         /// <remarks>
         /// - Art
@@ -149,8 +154,8 @@ namespace KYAULabs.Tools
         ///   - Fonts
         ///   - Icons
         /// </remarks>
-        [MenuItem("Tools/Project Setup/Additional Folders")]
-        public static void CreateAdditionalFolders()
+        [MenuItem("Tools/Project Setup/Create Additional Directories")]
+        public static void CreateAdditionalDirs()
         {
             projectPath ??= string.Empty;
             CreateDirectories(projectPath, "Art", "Audio", "Settings", "ThirdParty", "UI");

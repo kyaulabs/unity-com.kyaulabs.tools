@@ -37,7 +37,7 @@ namespace KYAULabs.Tools.Tests
         [SetUp]
         public void Setup()
         {
-            MenuTools.projectPath = "AssetsTest";
+            MenuToolsDirectories.projectPath = "AssetsTest";
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace KYAULabs.Tools.Tests
             };
 
             // Act
-            MenuTools.CreateDefaultFolders();
+            MenuToolsDirectories.CreateDefaultDirs();
 
             // Assert
             foreach (string folderPath in expectedFolders)
@@ -86,7 +86,7 @@ namespace KYAULabs.Tools.Tests
             };
 
             // Act
-            MenuTools.CreateAdditionalFolders();
+            MenuToolsDirectories.CreateAdditionalDirs();
 
             // Assert
             foreach (string folderPath in expectedFolders)

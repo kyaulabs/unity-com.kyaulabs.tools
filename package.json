@@ -1,6 +1,6 @@
 {
 	"name": "com.kyaulabs.tools",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"displayName": "KYAU Labs Tools",
 	"description": "A collection of UnityEditor scripts.",
 	"unity": "2022.2",
