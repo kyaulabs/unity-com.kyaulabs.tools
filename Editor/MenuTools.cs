@@ -30,9 +30,21 @@ using UnityEngine;
 
 namespace KYAULabs.Tools
 {
+    /// <summary>
+    /// Provides utility methods for Tools menu.
+    /// </summary>
     public static class MenuTools
     {
+        /// <summary>
+        /// Gets or sets the project path.
+        /// </summary>
         public static string projectPath = string.Empty;
+
+        /// <summary>
+        /// Creates directories at the specified root path with the given directory names.
+        /// </summary>
+        /// <param name="rootPath">The root path for creating directories. If null, uses the default path.</param>
+        /// <param name="dirs">The directory names to create.</param>
         public static void CreateDirectories(string rootPath = null, params string[] dirs)
         {
             var fullPath = Path.Combine(Application.dataPath, rootPath ?? string.Empty);
@@ -43,6 +55,12 @@ namespace KYAULabs.Tools
                 Directory.CreateDirectory(Path.Combine(fullPath, newDirectory));
         }
 
+        /// <summary>
+        /// Creates an <see cref="JsonAssemblyDefinition"/> object with the specified name and optional tests.
+        /// </summary>
+        /// <param name="name">The name of the assembly.</param>
+        /// <param name="tests">The type of tests for the assembly. Optional.</param>
+        /// <returns>The created <see cref="JsonAssemblyDefinition"/> object.</returns>
         public static JsonAssemblyDefinition CreateAssemblyDefinitionJson(string name, string tests = null)
         {
             JsonAssemblyDefinition jsonAssemblyDefinition = new(name, "KYAULabs");
@@ -66,6 +84,12 @@ namespace KYAULabs.Tools
             return jsonAssemblyDefinition;
         }
 
+        /// <summary>
+        /// Creates an assembly definition file at the specified path with the given name and optional tests.
+        /// </summary>
+        /// <param name="path">The path where the assembly definition file will be created.</param>
+        /// <param name="name">The name of the assembly.</param>
+        /// <param name="tests">The type of tests for the assembly. Optional.</param>
         public static void CreateAssemblyDefinition(string path, string name, string tests = null)
         {
             JsonAssemblyDefinition jsonAssemblyDefinition = CreateAssemblyDefinitionJson(name, tests);
@@ -76,24 +100,26 @@ namespace KYAULabs.Tools
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
         }
 
+        /// <summary>
+        /// Creates the default folder structure for the project.
+        /// </summary>
+        /// <remarks>
+        /// - Prefabs
+        /// - Scenes
+        /// - Scripts
+        ///   - Core
+        ///     - Core.asmdef
+        ///   - Game.asmdef
+        /// - Tests
+        ///   - EditMode
+        ///     - EditModeTests.asmdef
+        ///   - PlayMode
+        ///     - PlayModeTests.asmdef
+        /// </remarks>
         [MenuItem("Tools/Project Setup/Default Folders")]
         public static void CreateDefaultFolders()
         {
             projectPath ??= string.Empty;
-            /*
-             * Prefabs
-             * Scenes
-             * Scripts
-             * - Core
-             *   - Core.asmdef
-             * - Game.asmdef
-             * Tests
-             * - EditMode
-             *   - EditModeTests.asmdef
-             * - PlayMode
-             *   - PlayModeTests.asmdef
-             */
-
             CreateDirectories(projectPath, "Prefabs", "Scripts", "Tests", "ThirdParty");
             CreateDirectories(projectPath + "/Scripts", "Core");
             CreateDirectories(projectPath + "/Tests", "EditMode", "PlayMode");
@@ -103,27 +129,30 @@ namespace KYAULabs.Tools
             CreateAssemblyDefinition(projectPath + "/Scripts/Core", "Core");
             AssetDatabase.Refresh();
         }
+
+        /// <summary>
+        /// Creates additional folders (client-side) for the project.
+        /// </summary>
+        /// <remarks>
+        /// - Art
+        ///   - Animations
+        ///   - Materials
+        ///   - Meshes
+        ///   - Particles
+        ///   - Textures
+        /// - Audio
+        ///   - Music
+        ///   - Sounds
+        /// - Settings
+        /// - ThirdParty
+        /// - UI
+        ///   - Fonts
+        ///   - Icons
+        /// </remarks>
         [MenuItem("Tools/Project Setup/Additional Folders")]
         public static void CreateAdditionalFolders()
         {
             projectPath ??= string.Empty;
-            /*
-             * Art
-             * - Animations
-             * - Materials
-             * - Meshes
-             * - Particles
-             * - Textures
-             * Audio
-             * - Music
-             * - Sounds
-             * Settings
-             * ThirdParty
-             * UI
-             * - Fonts
-             * - Icons
-             */
-
             CreateDirectories(projectPath, "Art", "Audio", "Settings", "ThirdParty", "UI");
             CreateDirectories(projectPath + "/Art", "Animations", "Materials", "Meshes", "Particles", "Textures");
             CreateDirectories(projectPath + "/Audio", "Music", "Sounds");

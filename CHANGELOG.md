@@ -6,8 +6,12 @@ and [Semantic Versioning](https://semver.org/spec/v2.0.0.html) for versioning ad
 
 ### ♻️ Refactor
 
-- [Tests] Test naming scheme and proper format ([7ef7104](https://github.com/kyaulabs/grimoire/commit/7ef7104f606a5bbdbe82224af31fed2467591058))
-<!-- Auto-generated on 2023-05-22T16:44:23.457594100-07:00 -->
+- [Tests] Test naming scheme and proper format ([413045e](https://github.com/kyaulabs/grimoire/commit/413045e5689255062782618fbbb797dda49409ac))
+
+### 📝 Documentation
+- Xml documentation added ([044c71d](https://github.com/kyaulabs/grimoire/commit/044c71dceff146e47459f41716e8f8a994161055))
+
+<!-- Auto-generated on 2023-05-22T19:59:09.527074-07:00 -->
 
 ## [💾](https://github.com/kyaulabs/grimoire/releases/tag/v0.1.0) [0.1.0](https://github.com/kyaulabs/grimoire/commit/05b03fc749e4bc3b4f3a19974564be5e3e69a021) - (2023-05-22)
 
@@ -18,4 +22,4 @@ and [Semantic Versioning](https://semver.org/spec/v2.0.0.html) for versioning ad
 ### 🚀 Features
 
 - [Editor] Automated project setup ([05b03fc](https://github.com/kyaulabs/grimoire/commit/05b03fc749e4bc3b4f3a19974564be5e3e69a021))
-<!-- Auto-generated on 2023-05-22T16:44:23.458006700-07:00 -->
+<!-- Auto-generated on 2023-05-22T19:59:09.527471400-07:00 -->
