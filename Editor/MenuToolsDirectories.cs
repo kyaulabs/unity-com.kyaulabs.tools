@@ -24,14 +24,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEditor.PackageManager;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace KYAULabs.Tools
 {
@@ -126,12 +121,12 @@ namespace KYAULabs.Tools
         {
             projectPath ??= string.Empty;
             CreateDirectories(projectPath, "Prefabs", "Scripts", "Tests", "ThirdParty");
-            CreateDirectories(projectPath + "/Scripts", "Core");
-            CreateDirectories(projectPath + "/Tests", "EditMode", "PlayMode");
-            CreateAssemblyDefinition(projectPath + "/Tests/EditMode", "EditModeTests", "EditMode");
-            CreateAssemblyDefinition(projectPath + "/Tests/PlayMode", "PlayModeTests", "PlayMode");
-            CreateAssemblyDefinition(projectPath + "/Scripts", "Game");
-            CreateAssemblyDefinition(projectPath + "/Scripts/Core", "Core");
+            CreateDirectories(Path.Combine(projectPath, "Scripts"), "Core");
+            CreateDirectories(Path.Combine(projectPath, "Tests"), "EditMode", "PlayMode");
+            CreateAssemblyDefinition(Path.Combine(projectPath, "Tests/EditMode"), "EditModeTests", "EditMode");
+            CreateAssemblyDefinition(Path.Combine(projectPath, "Tests/PlayMode"), "PlayModeTests", "PlayMode");
+            CreateAssemblyDefinition(Path.Combine(projectPath, "Scripts"), "Game");
+            CreateAssemblyDefinition(Path.Combine(projectPath, "Scripts/Core"), "Core");
             AssetDatabase.Refresh();
         }
 
@@ -159,9 +154,9 @@ namespace KYAULabs.Tools
         {
             projectPath ??= string.Empty;
             CreateDirectories(projectPath, "Art", "Audio", "Settings", "ThirdParty", "UI");
-            CreateDirectories(projectPath + "/Art", "Animations", "Materials", "Meshes", "Particles", "Textures");
-            CreateDirectories(projectPath + "/Audio", "Music", "Sounds");
-            CreateDirectories(projectPath + "/UI", "Fonts", "Icons");
+            CreateDirectories(Path.Combine(projectPath, "Art"), "Animations", "Materials", "Meshes", "Particles", "Textures");
+            CreateDirectories(Path.Combine(projectPath, "Audio"), "Music", "Sounds");
+            CreateDirectories(Path.Combine(projectPath, "UI"), "Fonts", "Icons");
             AssetDatabase.Refresh();
         }
     }
